@@ -26,7 +26,7 @@ app.get('/todo',(req, res)=>{
     res.setHeader("Content-Type","application/json");
     let findQuery = {}
     if (req.query.name !== null && req.query.name !== undefined){
-        findQuery.name = req.query.name;
+        findQuery.name = { $regex: req.query.name, $options: "i"};
     }
     
     console.log("Getting todos");
