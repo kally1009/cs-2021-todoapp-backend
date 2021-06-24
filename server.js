@@ -7,9 +7,9 @@ const cors = require('cors');
 const fs = require('fs')
 
 
-//define a port
+
 app.use(cors());
-//tell app to use json
+
 app.use(express.json({}));
 
 app.use((req, res, next)=>{
