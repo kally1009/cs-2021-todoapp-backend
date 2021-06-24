@@ -10,8 +10,8 @@ function myCountingProcess(){
 function myCleanUpProcess() {
     console.log("run clean up")
     let date = new Date();
-    date.setDate(date.getDate()-1);
-    console.log("deleting any todos before", date);
+    date.setDate(date.getDate()+1);
+    console.log("deleting any todos after", date);
     model.Todo.deleteMany(
         { done: true, deadline : {$gt : date} },
         (err, deleteResult)=> {
