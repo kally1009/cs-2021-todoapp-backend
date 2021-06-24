@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">   
+    <title>To Do</title>
+</head>
+<body>
+    <div id="app">
+        <h1>To Do</h1>
+        <h2>Create To Do</h2>
+        <div class="input_area">
+            
+            <label>Name</label>
+            <input type="text" v-model="new_todo_name" placeholder="Enter a new todo name" >
+            <label>Description</label>
+            <input type="text" v-model="new_todo_description" placeholder="Enter a description">
+            <label>Deadline</label>
+            <input type="date" v-model= "new_todo_deadline" placeholder="Select the deadline">
+            <button v-on:click = "addNewTodo( )" class="add-btn">Add</button>
+            <a href="https://cs-2021-todoapp-kalicia.herokuapp.com/todo/download"><div class="download-btn">
+                <img src="download.svg" alt="download todo list" width="25px" >
+                <p id="download">Download</p>
+            </div>
+            </a>
+
+        </div>
+        <div class="list">
+        <h2> Your To Do List </h2>
+            <ul>
+                <li v-for="(todo,index) in todos">
+                <br>
+                <br>
+                    
+    
+                    <div v-if="todo.editing">
+                        
+                        <input type="text" v-model="todo.name">
+                        <input type="text" v-model = "todo.description">
+                        <input type="text" v-model = "todo.deadline">
+                        <button v-on:click="saveTodo(todo)" class="btns">Save</button>
+                    </div>
+
+                    <div v-else class="flex-container" v-bind:class="{done: todo.done}">
+                        <input type="checkbox" v-model="todo.done" v-on:change="saveTodoDone(todo)">
+                        <div> {{ todo.name }} </div>
+                        <div> {{ todo.description }} </div>
+                        <div> {{ todo.deadline }} </div>
+                        <div class="buttons-div">
+                            <button v-on:click="editTodo(todo)" class="btns">Edit</button>
+                            <button v-on:click="deleteTodo(todo._id)" class="btns">Delete</button>
+                        </div>
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>

@@ -10,6 +10,8 @@ const fs = require('fs')
 
 app.use(cors());
 
+app.use(express.static('static'));
+
 app.use(express.json({}));
 
 app.use((req, res, next)=>{
